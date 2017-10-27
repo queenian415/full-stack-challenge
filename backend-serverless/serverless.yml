@@ -11,7 +11,7 @@
 #
 # Happy Coding!
 
-service: slalom-wall
+service: full-stack
 
 # You can pin your service to only deploy with a specific Serverless version
 # Check out our docs for more details
@@ -55,17 +55,17 @@ provider:
 #    - exclude-me-dir/**
 
 functions:
-  hello:
-    handler: handler.installed
+   #  hello:
+   # handler: handler.installed
 
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
-    events:
-      - http:
-          path: slalom-wall/installed
-          method: post
-          cors: true
+#    events:
+#      - http:
+#          path: slalom-wall/installed
+#          method: post
+#          cors: true
 #      - s3: ${env:BUCKET}
 #      - schedule: rate(10 minutes)
 #      - sns: greeter-topic
@@ -90,12 +90,12 @@ functions:
 #    Define function environment variables here
 #    environment:
 #      variable2: value2
-  fileUpload:
-    handler: fileUpload.fileReceived
+  allEmployees:
+    handler: allEmployees.getAllEmployees
     events:
       - http:
-          path: slalom-wall/fileUploaded
-          method: post
+          path: full-stack/all_employees
+          method: get
           cors: true
 # you can add CloudFormation resource templates here
 #resources:

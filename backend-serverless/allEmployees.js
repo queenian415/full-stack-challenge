@@ -1,6 +1,6 @@
 'use strict';
 
-module.exports.fileReceived = (event, context, callback) => {
+module.exports.getAllEmployees = (event, context, callback) => {
   console.log(event);
   const response = {
     statusCode: 200,
@@ -15,5 +15,5 @@ module.exports.fileReceived = (event, context, callback) => {
   };
 
   const requestBody = JSON.parse(event.body);
-  console.log(requestBody);
+  callback(null, response);
 };

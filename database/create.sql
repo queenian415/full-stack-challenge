@@ -1,0 +1,16 @@
+USE full_stack;
+
+CREATE TABLE IF NOT EXISTS Admin (
+   id INT NOT NULL AUTO_INCREMENT,
+   name VARCHAR(30) NOT NULL,
+   PRIMARY KEY(id)
+);
+
+CREATE TABLE IF NOT EXISTS Employee (
+   id INT NOT NULL AUTO_INCREMENT,
+   adminId INT NOT NULL,
+   name VARCHAR(30) NOT NULL,
+   PRIMARY KEY (id),
+   FOREIGN KEY (adminId) REFERENCES Admin(id)
+);
+   

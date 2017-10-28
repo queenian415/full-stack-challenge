@@ -24,10 +24,12 @@ CREATE TABLE IF NOT EXISTS Performance (
     FOREIGN KEY (employeeId) REFERENCES Employee(id)
 ); 
 
-CREATE TABLE IF NOT EXISTS perf_feedback_ref (
+CREATE TABLE IF NOT EXISTS Performance_Feedback (
    feedbackerId INT NOT NULL,
    perfId INT NOT NULL,
+   employeeId INT NOT NULL,
    PRIMARY KEY (feedbackerId, perfId),
    FOREIGN KEY (feedbackerId) REFERENCES Employee(id),
-   FOREIGN KEY (perfId) REFERENCES Performance(id)
+   FOREIGN KEY (perfId) REFERENCES Performance(id),
+   FOREIGN KEY (employeeId) REFERENCES Employee(id)
 );

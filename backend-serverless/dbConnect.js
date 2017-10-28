@@ -4,6 +4,7 @@ var mysql = require('mysql');
 
 module.exports = {
     connect: function(callback) {
+        console.log('Connecting to database.');
         // Hardcoding parameters for simplicity
         var conn = mysql.createConnection({
             host     : 'full-stack.csa2piboptju.us-east-1.rds.amazonaws.com',

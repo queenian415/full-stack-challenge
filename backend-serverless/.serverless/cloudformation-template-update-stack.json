@@ -92,7 +92,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/full-stack/dev/1509070207193-2017-10-27T02:10:07.193Z/full-stack.zip"
+          "S3Key": "serverless/full-stack/dev/1509130639947-2017-10-27T18:57:19.947Z/full-stack.zip"
         },
         "FunctionName": "full-stack-dev-allEmployees",
         "Handler": "allEmployees.getAllEmployees",
@@ -111,14 +111,14 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "AllEmployeesLambdaVersioncaubtwvtGLQGkBW4wqzcoT4Er2UnExRRStMnRTKJw": {
+    "AllEmployeesLambdaVersionj0KkPCY97HEl6IPHQxBYMcMFczdC1zRx7JI5SQNs": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AllEmployeesLambdaFunction"
         },
-        "CodeSha256": "caubtwvtGLQGkBW4wq+zcoT4Er2+UnExRRStMnRTKJw="
+        "CodeSha256": "j0KkPCY97HEl6IPHQ/xBYMcMFczdC/1z/Rx7JI5SQNs="
       }
     },
     "ApiGatewayRestApi": {
@@ -183,7 +183,7 @@
               "ResponseParameters": {
                 "method.response.header.Access-Control-Allow-Origin": "'*'",
                 "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
-                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,GET'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
                 "method.response.header.Access-Control-Allow-Credentials": "'false'"
               },
               "ResponseTemplates": {
@@ -200,10 +200,10 @@
         }
       }
     },
-    "ApiGatewayMethodFullDashstackAllemployeesGet": {
+    "ApiGatewayMethodFullDashstackAllemployeesPost": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
-        "HttpMethod": "GET",
+        "HttpMethod": "POST",
         "RequestParameters": {},
         "ResourceId": {
           "Ref": "ApiGatewayResourceFullDashstackAllemployees"
@@ -238,7 +238,7 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1509070207207": {
+    "ApiGatewayDeployment1509130639959": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -247,7 +247,7 @@
         "StageName": "dev"
       },
       "DependsOn": [
-        "ApiGatewayMethodFullDashstackAllemployeesGet"
+        "ApiGatewayMethodFullDashstackAllemployeesPost"
       ]
     },
     "AllEmployeesLambdaPermissionApiGateway": {
@@ -293,7 +293,7 @@
     "AllEmployeesLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AllEmployeesLambdaVersioncaubtwvtGLQGkBW4wqzcoT4Er2UnExRRStMnRTKJw"
+        "Ref": "AllEmployeesLambdaVersionj0KkPCY97HEl6IPHQxBYMcMFczdC1zRx7JI5SQNs"
       }
     },
     "ServiceEndpoint": {

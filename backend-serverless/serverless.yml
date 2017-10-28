@@ -95,7 +95,7 @@ functions:
     events:
       - http:
           path: full-stack/all_employees
-          method: get
+          method: post
           cors: true
 # you can add CloudFormation resource templates here
 #resources:

@@ -3,10 +3,9 @@
 const dbconnect = require('./dbConnect');
 
 module.exports.addEmployeePerf = (event, context, callback) => {
-  console.log(event);
-
   const requestBody = JSON.parse(event.body);
-
+  console.log(requestBody);
+  
   dbconnect.connect((err, conn) => {
     if (err) console.log(err);
     else addPerf(conn, requestBody, (err, response) => {
@@ -23,12 +22,21 @@ function addPerf(conn, requestBody, callback) {
            "Content-Type": "application/json"
         }
     };
-    
-    dbconnect.addPerformanceReview(conn, requestBody,
-        (err, results) => {
-            if (err) throw err;
-            console.log(results);
-            response.body = JSON.stringify(results);
-            callback(null, response);
-        });
+    if (requestBody.id == null) {
+        dbconnect.insertPerformanceReview(conn, requestBody.employeeId, requestBody.content,
+            (err, results) => {
+                if (err) throw err;
+                console.log(results);
+                response.body = JSON.stringify(results);
+                callback(null, response);
+            });
+    } else {
+        dbconnect.updatePerformanceReview(conn, requestBody.id, requestBody.content,
+            (err, results) => {
+                if (err) throw err;
+                console.log(results);
+                response.body = JSON.stringify(results);
+                callback(null, response);
+            });
+        }
 }

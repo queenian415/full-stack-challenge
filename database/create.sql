@@ -23,3 +23,11 @@ CREATE TABLE IF NOT EXISTS Performance (
     PRIMARY KEY (id),
     FOREIGN KEY (employeeId) REFERENCES Employee(id)
 ); 
+
+CREATE TABLE IF NOT EXISTS perf_feedback_ref (
+   feedbackerId INT NOT NULL,
+   perfId INT NOT NULL,
+   PRIMARY KEY (feedbackerId, perfId),
+   FOREIGN KEY (feedbackerId) REFERENCES Employee(id),
+   FOREIGN KEY (perfId) REFERENCES Performance(id)
+);

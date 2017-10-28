@@ -63,32 +63,48 @@ module.exports = {
             });
     },
 
-    addPerformanceReview: function(conn, body, callback) {
-        if (body.isNew) insertPerformanceReview(conn, body.employeeId, body.content, callback);
-        else updatePerformanceReview(conn, body.employeeId, body.content, callback);
+    insertPerformanceReview: function (conn, employeeId, content, callback) {
+        conn.query(
+            'INSERT INTO Performance(employeeId, content) VALUES (?, ?)',
+            [employeeId, content],
+            (error, results, fields) => {
+                if (error) {
+                    console.error(error);
+                }
+                callback(error, results);
+            });
+    },
+
+    updatePerformanceReview: function (conn, id, content, callback) {
+        conn.query(
+            'UPDATE Performance SET content = ? WHERE id = ?',
+            [content, id],
+            (error, results, fields) => {
+                if (error) {
+                    console.error(error);
+                }
+                callback(error, results);
+            });
+    },
+
+    addFeedbacker: function(conn, feedbackerid, perfid, callback) {
+        conn.query(
+            'INSERT INTO perf_feedback_ref (feedbackerId, perfId) VALUES (?, ?)',
+            [feedbackerid, perfid],
+            (error, results, fields) => {
+                if (error) {
+                    if (error.code == "ER_DUP_ENTRY") {
+                        // If duplicate entry, ignore error
+                        error = null;
+                    } else console.error(error);
+                }
+                callback(error, results);
+            });
+
     }
+    
 }
 
-function insertPerformanceReview(conn, employeeId, content, callback) {
-    conn.query(
-        'INSERT INTO Performance(employeeId, content) VALUES (?, ?)',
-        [employeeId, content],
-        (error, results, fields) => {
-            if (error) {
-                console.error(error);
-            }
-            callback(error, results);
-        });
-}
 
-function updatePerformanceReview(conn, employeeId, content, callback) {
-    conn.query(
-        'UPDATE Performance SET content = ? WHERE employeeId = ?',
-        [content, employeeId],
-        (error, results, fields) => {
-            if (error) {
-                console.error(error);
-            }
-            callback(error, results);
-        });
-}
+
+

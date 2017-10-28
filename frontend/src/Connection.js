@@ -10,6 +10,29 @@ class Connection {
             })
             .then((response) => { return response.json() })
     }
+
+    static getEmployeePerf(employeeId) {
+        console.log('Connection: get employee performance');
+        return fetch(baseUrl + 'one_employees_perf', {
+                method: 'POST',
+                body: JSON.stringify({employeeId: employeeId})
+            })
+            .then((response) => { 
+                return response.json() })
+    }
+
+    static addEmployeePerf(employeeId, content) {
+        console.log('Connection: add employee performance');
+        return fetch(baseUrl + 'add_employees_perf', {
+                method: 'POST',
+                body: JSON.stringify({
+                    employeeId: employeeId,
+                    content: content
+                })
+            })
+            .then((response) => { 
+                return response.json() })
+    }
 }
 
 export default Connection;

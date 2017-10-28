@@ -9,7 +9,7 @@ const Links = () => {
         <div className='center'>
             <nav>
                 <li><Link to='/'>Home</Link></li>
-                <li><Link to='/admin'>Admin</Link></li>
+                <li><Link to='/adminEmp'>Admin</Link></li>
                 <li><Link to='/employee'>Employee</Link></li>
             </nav>
         </div>
@@ -19,13 +19,14 @@ const Links = () => {
 class Home extends Component {
     render() {
         return (
-            <body>
+            <div>
                 <Switch>
                     <Route exact path='/' component={Links} />
-                    <Route exact path='/admin' component={Admin} />
+                    <Route exact path='/adminEmp' component={Admin} />
                     <Route exact path='/employee' component={Employee} />
+                    <Route path='/adminEmp/:id/:name' component={Admin} />
                 </Switch>
-            </body>
+            </div>
         );
     }
 }

@@ -11,7 +11,7 @@ import OneEmployee from './OneEmployee';
 
 const ADMIN_ID = 1; // Default admin id.
 
-class AllEmployees extends Component {
+class Admin extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -35,26 +35,30 @@ class AllEmployees extends Component {
     render() {
         return (
             <div>
-                <h2>All employees:</h2>
-                <nav>{this.state.employees.map((a) => 
-                        (<li key={a.id}><Link to={'/employee-performance/' + a.id}>{a.id}, {a.adminId}, {a.name}</Link></li>)
-                    )}</nav>
-            </div>
-        )
-    }
-}
-
-class Admin extends Component {
-    render() {
-        return (
-            <div>
                 <h1>Admin</h1>
                 <Switch>
-                    <Route exact path='/admin' component={AllEmployees} />
-                    <Route path='/employee-performance/:id' component={OneEmployee} />
+                    <Route exact path='/adminEmp' render={(props) => (
+                        <AllEmployees {...props} employees={this.state.employees} />
+                    )} />
+                    <Route path='/adminEmp/:id/:name' component={(props) => (
+                        <OneEmployee {...props} employees={this.state.employees} />
+                    )} />
                 </Switch>
             </div>               
         );
+    }
+}
+
+class AllEmployees extends Component {
+    render() {
+        return (
+            <div>
+                <h2>All employees:</h2>
+                <nav>{this.props.employees.map((a) => 
+                        (<li key={a.id}><Link to={'/adminEmp/' + a.id + '/' + a.name}>{a.id}, {a.adminId}, {a.name}</Link></li>)
+                    )}</nav>
+            </div>
+        )
     }
 }
 

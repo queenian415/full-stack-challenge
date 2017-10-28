@@ -103,6 +103,19 @@ module.exports = {
 
     },
 
+    removeFeedbacker: function(conn, feedbackerid, perfid, callback) {
+        conn.query(
+            'DELETE FROM perf_feedback_ref WHERE feedbackerId = ? AND perfId = ?',
+            [feedbackerid, perfid],
+            (error, results, fields) => {
+                if (error) {
+                    console.error(error);
+                }
+                callback(error, results);
+            });
+
+    },
+
     getFeedbakcers: function(conn, perfid, callback) {
         conn.query(
             'SELECT feedbackerId FROM perf_feedback_ref WHERE perfId = ?',

@@ -13,4 +13,13 @@ CREATE TABLE IF NOT EXISTS Employee (
    PRIMARY KEY (id),
    FOREIGN KEY (adminId) REFERENCES Admin(id)
 );
-   
+
+CREATE TABLE IF NOT EXISTS Performance (
+    id INT NOT NULL AUTO_INCREMENT,
+    employeeId INT NOT NULL,
+    content VARCHAR(150),
+    create_ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified_ts TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    FOREIGN KEY (employeeId) REFERENCES Employee(id)
+); 

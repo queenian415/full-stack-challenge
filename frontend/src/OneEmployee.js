@@ -28,6 +28,15 @@ class OneEmployee extends Component {
                     id: perf[0].id,
                     content: perf[0].content,
                 })
+                Connection.getFeedbackers(perf[0].id).then((res) => {
+                    const newFeedbackers = new Set();                    
+                    res.map((a) => {
+                        newFeedbackers.add(a.feedbackerId);
+                        this.setState({
+                            isAssign: newFeedbackers
+                        })
+                    })
+                })
             }
         });
     }

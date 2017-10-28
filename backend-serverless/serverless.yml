@@ -118,6 +118,13 @@ functions:
           path: full-stack/add_feedbacker
           method: post
           cors: true
+  getFeedbackers:
+    handler: getFeedbackers.getFeedbackers
+    events:
+      - http:
+          path: full-stack/get_feedbackers
+          method: post
+          cors: true
 # you can add CloudFormation resource templates here
 #resources:
 #  Resources:

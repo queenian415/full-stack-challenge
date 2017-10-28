@@ -3,9 +3,9 @@
 const dbconnect = require('./dbConnect');
 
 module.exports.getEmployeePerf = (event, context, callback) => {
-  console.log(event);
-
   const requestBody = JSON.parse(event.body);
+  console.log(requestBody);
+  
   const employeeId = requestBody.employeeId;
 
   dbconnect.connect((err, conn) => {
@@ -28,7 +28,6 @@ function getPerf(conn, employeeId, callback) {
         },
         body: JSON.stringify(results)
       };
-      console.log(response.body);
       callback(null, response);
     });
 }

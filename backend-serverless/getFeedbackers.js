@@ -2,23 +2,23 @@
 
 const dbconnect = require('./dbConnect');
 
-module.exports.getEmployeePerf = (event, context, callback) => {
-  console.log(event);
-
+module.exports.getFeedbackers = (event, context, callback) => {
   const requestBody = JSON.parse(event.body);
-  const employeeId = requestBody.employeeId;
+  console.log(requestBody);
+  
+  const perfId = requestBody.perfId;
 
   dbconnect.connect((err, conn) => {
     if (err) console.log(err);
-    else getPerf(conn, employeeId, (err, response) => {
+    else getAllFeedbackers(conn, perfId, (err, response) => {
       dbconnect.disconnect(conn);
       callback(err, response);
     });
   });
 }
 
-function getPerf(conn, employeeId, callback) {
-  dbconnect.getPerformanceReview(conn, employeeId,
+function getAllFeedbackers(conn, perfId, callback) {
+  dbconnect.getFeedbakcers(conn, perfId,
     (err, results) => {
       if (err) throw err;
       const response = {
@@ -28,7 +28,6 @@ function getPerf(conn, employeeId, callback) {
         },
         body: JSON.stringify(results)
       };
-      console.log(response.body);
       callback(null, response);
     });
 }

@@ -8,45 +8,36 @@ class EmployeeFeedback extends Component {
         this.name = this.props.match.params.name;
 
         this.state = {
-            id: null,
-            content: '',
-            isAssign: new Set(),
-            oldFeedbackers: new Set()
+            perfs: []
         }
     }
 
     componentDidMount() {
-        
+        Connection.getPerfsForFeedback(this.empId).then((res) => {
+            const rows = [];
+            res.map((row) => {
+                rows.push(row);
+                this.setState({
+                    perfs: rows
+                })
+            })
+        })
     }
 
     render() {
+        console.log(this.state.perfs);
         return (
             <div>
             <h1>Employee: {this.name}</h1>
             <h3>List of Performance Reviews for Your Feedback:</h3>
-            <fieldset id={this.props.id}>
-                <label>
-                    <h2>Performance Review:</h2><br/>
-                    <textarea rows="10" cols="50" name="content" value={this.state.content} onChange={this.handleInputChange}/>
-                </label><br/>
-                <button type="button" onClick={this.handleSubmit}>Save</button><br/>
-                <label>
-                    <h3>Assign employees for feedbacks:</h3><br/>
-                    {this.props.employees.map((emp) => {
-                        if (emp.id != this.empId) {
-                            return (
-                            <label key={emp.id}>
-                                <input id={emp.id} name="isAssign" type="checkbox"
-                                    checked={this.state.isAssign.has(emp.id)}
-                                    onChange={this.handleCheckboxChange} /> 
-                                {emp.name}<br/>
-                            </label>);
-                        }
-                        else return null;
-                        })}
-                </label><br/>
-                <button type="button" onClick={this.props.history.goBack}>Back</button>
-            </fieldset>
+            {this.state.perfs.map((perf) => (
+                <fieldset className='bottom' key={perf.id}>
+                    <h4>Performance Review for {perf.name}:</h4><br/>
+                    <textarea readOnly rows="10" cols="50" name="content" value={perf.content} />
+                    <br/>    
+                </fieldset>)
+            )}
+            <button type="button" onClick={this.props.history.goBack}>Back</button>                            
             </div>
         );
     }

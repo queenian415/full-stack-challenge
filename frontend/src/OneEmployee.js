@@ -10,8 +10,7 @@ class OneEmployee extends Component {
         this.state = {
             id: null,
             content: '',
-            isAssign: new Set(),
-            oldFeedbackers: new Set()
+            isAssign: new Set()
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);

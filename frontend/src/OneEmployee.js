@@ -11,13 +11,13 @@ class OneEmployee extends Component {
         this.state = {
             id: null,
             content: '',
-            isAssign: new Set()       
+            isAssign: new Set(),
+            oldFeedbackers: new Set()
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
-        this.addFeedbacker = this.addFeedbacker.bind(this);
     }
 
     componentDidMount() {
@@ -33,12 +33,20 @@ class OneEmployee extends Component {
                     res.map((a) => {
                         newFeedbackers.add(a.feedbackerId);
                         this.setState({
-                            isAssign: newFeedbackers
+                            isAssign: newFeedbackers,
                         })
                     })
                 })
+            } else {
+                Connection.addEmployeePerf(this.state.id, this.empId, this.state.content).then((res) => {
+                    if (this.state.id == null) {
+                        this.setState({
+                            id: res.insertId
+                        });
+                    }
+                });
             }
-        });
+        });     
     }
 
     handleInputChange(e) {
@@ -53,6 +61,7 @@ class OneEmployee extends Component {
         let newAssign = null;
         if (e.target.checked == true) {
             if (!this.state.isAssign.has(empId)) {
+                Connection.addFeedbacker(this.state.id, empId);
                 newAssign = this.state.isAssign;
                 newAssign.add(empId);
                 this.setState({
@@ -61,6 +70,7 @@ class OneEmployee extends Component {
             }
         } else { // checked == false
             if (this.state.isAssign.has(empId)) {
+                Connection.removeFeedbacker(this.state.id, empId);
                 newAssign = this.state.isAssign;
                 newAssign.delete(empId);
                 this.setState({
@@ -75,23 +85,12 @@ class OneEmployee extends Component {
             if (this.state.id == null) {
                 this.setState({
                     id: res.insertId,
-                }, this.addFeedbacker(this.state.id, this.state.isAssign));
-            } else {
-                this.addFeedbacker(this.state.id, this.state.isAssign);
+                });
             }
         });
     }
 
-    addFeedbacker(id, isAssign) {
-        if (this.state.isAssign.size > 0) {
-            this.state.isAssign.forEach((a) => {
-                Connection.addFeedbacker(this.state.id, a);
-            })
-        }
-    }
-
     render() {
-        console.log(this.state.isAssign);
         return (
             <div>
             <h1>Employee: {this.name}</h1>
@@ -100,6 +99,7 @@ class OneEmployee extends Component {
                     <h2>Performance Review:</h2><br/>
                     <textarea rows="10" cols="50" name="content" value={this.state.content} onChange={this.handleInputChange}/>
                 </label><br/>
+                <button type="button" onClick={this.handleSubmit}>Save</button><br/>
                 <label>
                     <h3>Assign employees for feedbacks:</h3><br/>
                     {this.props.employees.map((emp) => {
@@ -115,7 +115,6 @@ class OneEmployee extends Component {
                         else return null;
                         })}
                 </label><br/>
-                <button type="button" onClick={this.handleSubmit}>Save</button>
                 <button type="button" onClick={this.props.history.goBack}>Back</button>
             </fieldset>
             </div>

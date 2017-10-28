@@ -34,7 +34,7 @@ class Admin extends Component {
 
     render() {
         return (
-            <div>
+            <div className='left'>
                 <h1>Admin</h1>
                 <Switch>
                     <Route exact path='/adminEmp' render={(props) => (
@@ -55,8 +55,11 @@ class AllEmployees extends Component {
             <div>
                 <h2>All employees:</h2>
                 <nav>{this.props.employees.map((a) => 
-                        (<li key={a.id}><Link to={'/adminEmp/' + a.id + '/' + a.name}>{a.id}, {a.adminId}, {a.name}</Link></li>)
-                    )}</nav>
+                        (<li key={a.id}><Link to={'/adminEmp/' + a.id + '/' + a.name}>
+                            {a.id}, {a.adminId}, {a.name}</Link>
+                        </li>))}
+                </nav><br/>
+                <Link to={'/'}>Back</Link>
             </div>
         )
     }

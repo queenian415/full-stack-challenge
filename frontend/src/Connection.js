@@ -36,8 +36,20 @@ class Connection {
     }
 
     static addFeedbacker(id, feedbackerId) {
-        console.log('Connection: add feedbacker to perf ' + id);
+        console.log('Connection: add feedbacker ' + feedbackerId + ' to perf ' + id);
         return fetch(baseUrl + 'add_feedbacker', {
+            method: 'POST',
+            body: JSON.stringify({
+                perfId: id,
+                feedbackerId: feedbackerId
+            })
+        })
+        .then()
+    }
+
+    static removeFeedbacker(id, feedbackerId) {
+        console.log('Connection: remove feedbacker ' + feedbackerId + ' to perf ' + id);
+        return fetch(baseUrl + 'remove_feedbacker', {
             method: 'POST',
             body: JSON.stringify({
                 perfId: id,

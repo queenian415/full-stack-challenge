@@ -24,6 +24,7 @@ class Home extends Component {
                     <Route exact path='/' component={Links} />
                     <Route exact path='/adminEmp' component={Admin} />
                     <Route exact path='/employee' component={Employee} />
+                    <Route exact path='/employee/:id/:name' component={Employee} />
                     <Route path='/adminEmp/:id/:name' component={Admin} />
                 </Switch>
             </div>

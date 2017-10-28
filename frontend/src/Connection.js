@@ -35,13 +35,14 @@ class Connection {
                 return response.json() })
     }
 
-    static addFeedbacker(id, feedbackerId) {
+    static addFeedbacker(id, feedbackerId, empId) {
         console.log('Connection: add feedbacker ' + feedbackerId + ' to perf ' + id);
         return fetch(baseUrl + 'add_feedbacker', {
             method: 'POST',
             body: JSON.stringify({
                 perfId: id,
-                feedbackerId: feedbackerId
+                feedbackerId: feedbackerId,
+                employeeId: empId
             })
         })
         .then()
@@ -65,6 +66,18 @@ class Connection {
             method: 'POST',
             body: JSON.stringify({
                 perfId: id,
+            })
+        })
+        .then((response) => { 
+            return response.json() })
+    }
+
+    static getPerfsForFeedback(feedbackerId) {
+        console.log('Connection: get perf for employee ' + feedbackerId);
+        return fetch(baseUrl + 'get_perfs_for_feedback', {
+            method: 'POST',
+            body: JSON.stringify({
+                feedbackerId: feedbackerId,
             })
         })
         .then((response) => { 

@@ -38,7 +38,7 @@ class Admin extends Component {
                 <h1>Admin</h1>
                 <Switch>
                     <Route exact path='/adminEmp' render={(props) => (
-                        <AllEmployees {...props} employees={this.state.employees} />
+                        <EmployeeAdminLink {...props} employees={this.state.employees} />
                     )} />
                     <Route path='/adminEmp/:id/:name' component={(props) => (
                         <OneEmployee {...props} employees={this.state.employees} />
@@ -49,7 +49,7 @@ class Admin extends Component {
     }
 }
 
-class AllEmployees extends Component {
+class EmployeeAdminLink extends Component {
     render() {
         return (
             <div>

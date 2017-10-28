@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Connection from './Connection';
-import { Link } from 'react-router-dom';
 
 class OneEmployee extends Component {
     constructor(props) {
@@ -57,22 +56,22 @@ class OneEmployee extends Component {
 
     handleCheckboxChange(e) {
         console.log("handle check box");
-        const empId = parseInt(e.target.id);
+        const feedbackerId = parseInt(e.target.id);
         let newAssign = null;
         if (e.target.checked == true) {
-            if (!this.state.isAssign.has(empId)) {
-                Connection.addFeedbacker(this.state.id, empId);
+            if (!this.state.isAssign.has(feedbackerId)) {
+                Connection.addFeedbacker(this.state.id, feedbackerId, this.empId);
                 newAssign = this.state.isAssign;
-                newAssign.add(empId);
+                newAssign.add(feedbackerId);
                 this.setState({
                     isAssign: newAssign
                 });
             }
         } else { // checked == false
-            if (this.state.isAssign.has(empId)) {
-                Connection.removeFeedbacker(this.state.id, empId);
+            if (this.state.isAssign.has(feedbackerId)) {
+                Connection.removeFeedbacker(this.state.id, feedbackerId);
                 newAssign = this.state.isAssign;
-                newAssign.delete(empId);
+                newAssign.delete(feedbackerId);
                 this.setState({
                     isAssign: newAssign
                 });

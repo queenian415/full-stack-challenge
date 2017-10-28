@@ -11,6 +11,18 @@
         "LogGroupName": "/aws/lambda/full-stack-dev-allEmployees"
       }
     },
+    "EmployeePerLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/full-stack-dev-employeePer"
+      }
+    },
+    "AddEmpPerfLogGroup": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "LogGroupName": "/aws/lambda/full-stack-dev-addEmpPerf"
+      }
+    },
     "IamRoleLambdaExecution": {
       "Type": "AWS::IAM::Role",
       "Properties": {
@@ -53,6 +65,12 @@
                   "Resource": [
                     {
                       "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/full-stack-dev-allEmployees:*"
+                    },
+                    {
+                      "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/full-stack-dev-employeePer:*"
+                    },
+                    {
+                      "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/full-stack-dev-addEmpPerf:*"
                     }
                   ]
                 },
@@ -64,6 +82,12 @@
                   "Resource": [
                     {
                       "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/full-stack-dev-allEmployees:*:*"
+                    },
+                    {
+                      "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/full-stack-dev-employeePer:*:*"
+                    },
+                    {
+                      "Fn::Sub": "arn:aws:logs:${AWS::Region}:${AWS::AccountId}:log-group:/aws/lambda/full-stack-dev-addEmpPerf:*:*"
                     }
                   ]
                 }
@@ -92,7 +116,7 @@
           "S3Bucket": {
             "Ref": "ServerlessDeploymentBucket"
           },
-          "S3Key": "serverless/full-stack/dev/1509130639947-2017-10-27T18:57:19.947Z/full-stack.zip"
+          "S3Key": "serverless/full-stack/dev/1509161424678-2017-10-28T03:30:24.678Z/full-stack.zip"
         },
         "FunctionName": "full-stack-dev-allEmployees",
         "Handler": "allEmployees.getAllEmployees",
@@ -111,14 +135,86 @@
         "IamRoleLambdaExecution"
       ]
     },
-    "AllEmployeesLambdaVersionj0KkPCY97HEl6IPHQxBYMcMFczdC1zRx7JI5SQNs": {
+    "AllEmployeesLambdaVersion5Nl3HvpfX6hMeOJt4swahykCD9zJbVk595mVHEY40": {
       "Type": "AWS::Lambda::Version",
       "DeletionPolicy": "Retain",
       "Properties": {
         "FunctionName": {
           "Ref": "AllEmployeesLambdaFunction"
         },
-        "CodeSha256": "j0KkPCY97HEl6IPHQ/xBYMcMFczdC/1z/Rx7JI5SQNs="
+        "CodeSha256": "5Nl3HvpfX6hMe+OJt4swahykCD9zJbVk595mVHEY/40="
+      }
+    },
+    "EmployeePerLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/full-stack/dev/1509161424678-2017-10-28T03:30:24.678Z/full-stack.zip"
+        },
+        "FunctionName": "full-stack-dev-employeePer",
+        "Handler": "oneEmployeePerf.getEmployeePerf",
+        "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs6.10",
+        "Timeout": 6
+      },
+      "DependsOn": [
+        "EmployeePerLogGroup",
+        "IamRoleLambdaExecution"
+      ]
+    },
+    "EmployeePerLambdaVersion5Nl3HvpfX6hMeOJt4swahykCD9zJbVk595mVHEY40": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "EmployeePerLambdaFunction"
+        },
+        "CodeSha256": "5Nl3HvpfX6hMe+OJt4swahykCD9zJbVk595mVHEY/40="
+      }
+    },
+    "AddEmpPerfLambdaFunction": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": {
+            "Ref": "ServerlessDeploymentBucket"
+          },
+          "S3Key": "serverless/full-stack/dev/1509161424678-2017-10-28T03:30:24.678Z/full-stack.zip"
+        },
+        "FunctionName": "full-stack-dev-addEmpPerf",
+        "Handler": "addEmployeePerf.addEmployeePerf",
+        "MemorySize": 1024,
+        "Role": {
+          "Fn::GetAtt": [
+            "IamRoleLambdaExecution",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs6.10",
+        "Timeout": 6
+      },
+      "DependsOn": [
+        "AddEmpPerfLogGroup",
+        "IamRoleLambdaExecution"
+      ]
+    },
+    "AddEmpPerfLambdaVersion5Nl3HvpfX6hMeOJt4swahykCD9zJbVk595mVHEY40": {
+      "Type": "AWS::Lambda::Version",
+      "DeletionPolicy": "Retain",
+      "Properties": {
+        "FunctionName": {
+          "Ref": "AddEmpPerfLambdaFunction"
+        },
+        "CodeSha256": "5Nl3HvpfX6hMe+OJt4swahykCD9zJbVk595mVHEY/40="
       }
     },
     "ApiGatewayRestApi": {
@@ -149,6 +245,30 @@
           "Ref": "ApiGatewayResourceFullDashstack"
         },
         "PathPart": "all_employees",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceFullDashstackOneemployeesperf": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceFullDashstack"
+        },
+        "PathPart": "one_employees_perf",
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayResourceFullDashstackAddemployeesperf": {
+      "Type": "AWS::ApiGateway::Resource",
+      "Properties": {
+        "ParentId": {
+          "Ref": "ApiGatewayResourceFullDashstack"
+        },
+        "PathPart": "add_employees_perf",
         "RestApiId": {
           "Ref": "ApiGatewayRestApi"
         }
@@ -200,6 +320,98 @@
         }
       }
     },
+    "ApiGatewayMethodFullDashstackOneemployeesperfOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Credentials": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
+                "method.response.header.Access-Control-Allow-Credentials": "'false'"
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceFullDashstackOneemployeesperf"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
+    "ApiGatewayMethodFullDashstackAddemployeesperfOptions": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "AuthorizationType": "NONE",
+        "HttpMethod": "OPTIONS",
+        "MethodResponses": [
+          {
+            "StatusCode": "200",
+            "ResponseParameters": {
+              "method.response.header.Access-Control-Allow-Origin": true,
+              "method.response.header.Access-Control-Allow-Headers": true,
+              "method.response.header.Access-Control-Allow-Methods": true,
+              "method.response.header.Access-Control-Allow-Credentials": true
+            },
+            "ResponseModels": {}
+          }
+        ],
+        "RequestParameters": {},
+        "Integration": {
+          "Type": "MOCK",
+          "RequestTemplates": {
+            "application/json": "{statusCode:200}"
+          },
+          "IntegrationResponses": [
+            {
+              "StatusCode": "200",
+              "ResponseParameters": {
+                "method.response.header.Access-Control-Allow-Origin": "'*'",
+                "method.response.header.Access-Control-Allow-Headers": "'Content-Type,X-Amz-Date,Authorization,X-Api-Key,X-Amz-Security-Token,X-Amz-User-Agent'",
+                "method.response.header.Access-Control-Allow-Methods": "'OPTIONS,POST'",
+                "method.response.header.Access-Control-Allow-Credentials": "'false'"
+              },
+              "ResponseTemplates": {
+                "application/json": ""
+              }
+            }
+          ]
+        },
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceFullDashstackAddemployeesperf"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        }
+      }
+    },
     "ApiGatewayMethodFullDashstackAllemployeesPost": {
       "Type": "AWS::ApiGateway::Method",
       "Properties": {
@@ -238,7 +450,83 @@
         "MethodResponses": []
       }
     },
-    "ApiGatewayDeployment1509130639959": {
+    "ApiGatewayMethodFullDashstackOneemployeesperfPost": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceFullDashstackOneemployeesperf"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:aws:apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "EmployeePerLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayMethodFullDashstackAddemployeesperfPost": {
+      "Type": "AWS::ApiGateway::Method",
+      "Properties": {
+        "HttpMethod": "POST",
+        "RequestParameters": {},
+        "ResourceId": {
+          "Ref": "ApiGatewayResourceFullDashstackAddemployeesperf"
+        },
+        "RestApiId": {
+          "Ref": "ApiGatewayRestApi"
+        },
+        "AuthorizationType": "NONE",
+        "Integration": {
+          "IntegrationHttpMethod": "POST",
+          "Type": "AWS_PROXY",
+          "Uri": {
+            "Fn::Join": [
+              "",
+              [
+                "arn:aws:apigateway:",
+                {
+                  "Ref": "AWS::Region"
+                },
+                ":lambda:path/2015-03-31/functions/",
+                {
+                  "Fn::GetAtt": [
+                    "AddEmpPerfLambdaFunction",
+                    "Arn"
+                  ]
+                },
+                "/invocations"
+              ]
+            ]
+          }
+        },
+        "MethodResponses": []
+      }
+    },
+    "ApiGatewayDeployment1509161424697": {
       "Type": "AWS::ApiGateway::Deployment",
       "Properties": {
         "RestApiId": {
@@ -247,7 +535,9 @@
         "StageName": "dev"
       },
       "DependsOn": [
-        "ApiGatewayMethodFullDashstackAllemployeesPost"
+        "ApiGatewayMethodFullDashstackAllemployeesPost",
+        "ApiGatewayMethodFullDashstackOneemployeesperfPost",
+        "ApiGatewayMethodFullDashstackAddemployeesperfPost"
       ]
     },
     "AllEmployeesLambdaPermissionApiGateway": {
@@ -256,6 +546,72 @@
         "FunctionName": {
           "Fn::GetAtt": [
             "AllEmployeesLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:aws:execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "EmployeePerLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "EmployeePerLambdaFunction",
+            "Arn"
+          ]
+        },
+        "Action": "lambda:InvokeFunction",
+        "Principal": "apigateway.amazonaws.com",
+        "SourceArn": {
+          "Fn::Join": [
+            "",
+            [
+              "arn:aws:execute-api:",
+              {
+                "Ref": "AWS::Region"
+              },
+              ":",
+              {
+                "Ref": "AWS::AccountId"
+              },
+              ":",
+              {
+                "Ref": "ApiGatewayRestApi"
+              },
+              "/*/*"
+            ]
+          ]
+        }
+      }
+    },
+    "AddEmpPerfLambdaPermissionApiGateway": {
+      "Type": "AWS::Lambda::Permission",
+      "Properties": {
+        "FunctionName": {
+          "Fn::GetAtt": [
+            "AddEmpPerfLambdaFunction",
             "Arn"
           ]
         },
@@ -293,7 +649,19 @@
     "AllEmployeesLambdaFunctionQualifiedArn": {
       "Description": "Current Lambda function version",
       "Value": {
-        "Ref": "AllEmployeesLambdaVersionj0KkPCY97HEl6IPHQxBYMcMFczdC1zRx7JI5SQNs"
+        "Ref": "AllEmployeesLambdaVersion5Nl3HvpfX6hMeOJt4swahykCD9zJbVk595mVHEY40"
+      }
+    },
+    "EmployeePerLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "EmployeePerLambdaVersion5Nl3HvpfX6hMeOJt4swahykCD9zJbVk595mVHEY40"
+      }
+    },
+    "AddEmpPerfLambdaFunctionQualifiedArn": {
+      "Description": "Current Lambda function version",
+      "Value": {
+        "Ref": "AddEmpPerfLambdaVersion5Nl3HvpfX6hMeOJt4swahykCD9zJbVk595mVHEY40"
       }
     },
     "ServiceEndpoint": {

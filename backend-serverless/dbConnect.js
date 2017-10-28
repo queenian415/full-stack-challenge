@@ -31,11 +31,64 @@ module.exports = {
         conn.query(
             'SELECT id, adminId, name FROM Employee WHERE adminId = ?',
             [adminId],
-            function (error, results, fields) {
+            (error, results, fields) => {
                 if (error) {
                     console.error(error);
                 }
                 callback(error, results);
             });
+    },
+
+    getEmployee: function(conn, employeeId, callback) {
+        conn.query(
+            'SELECT id, employeeId, name FROM Employee WHERE employeeId = ?',
+            [employeeId],
+            (error, results, fields) => {
+                if (error) {
+                    console.error(error);
+                }
+                callback(error, results);
+            });
+    },
+
+    getPerformanceReview: function(conn, employeeId, callback) {
+        conn.query(
+            'SELECT id, content FROM Performance WHERE employeeId = ?',
+            [employeeId],
+            (error, results, fields) => {
+                if (error) {
+                    console.error(error);
+                }
+                callback(error, results);
+            });
+    },
+
+    addPerformanceReview: function(conn, body, callback) {
+        if (body.isNew) insertPerformanceReview(conn, body.employeeId, body.content, callback);
+        else updatePerformanceReview(conn, body.employeeId, body.content, callback);
     }
+}
+
+function insertPerformanceReview(conn, employeeId, content, callback) {
+    conn.query(
+        'INSERT INTO Performance(employeeId, content) VALUES (?, ?)',
+        [employeeId, content],
+        (error, results, fields) => {
+            if (error) {
+                console.error(error);
+            }
+            callback(error, results);
+        });
+}
+
+function updatePerformanceReview(conn, employeeId, content, callback) {
+    conn.query(
+        'UPDATE Performance SET content = ? WHERE employeeId = ?',
+        [content, employeeId],
+        (error, results, fields) => {
+            if (error) {
+                console.error(error);
+            }
+            callback(error, results);
+        });
 }

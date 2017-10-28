@@ -132,6 +132,13 @@ functions:
           path: full-stack/remove_feedbacker
           method: post
           cors: true
+  getPerfsForFeedback:
+    handler: getPerfsForFeedback.getPerfsForFeedback
+    events:
+      - http:
+          path: full-stack/get_perfs_for_feedback
+          method: post
+          cors: true
 # you can add CloudFormation resource templates here
 #resources:
 #  Resources:

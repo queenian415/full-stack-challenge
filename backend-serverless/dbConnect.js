@@ -130,8 +130,10 @@ module.exports = {
 
     getPerfsForFeedback: function(conn, feedbackerid, callback) {
         conn.query(
-            'select * from Performance WHERE id IN (' +
-                'select perfId from Performance_Feedback where feedbackerId = ?)',
+            'select p.id, p.content, p.employeeId, e.name from ' + 
+            'Performance p inner join Employee e on p.employeeId = e.id ' + 
+            'where p.id in ' + 
+                '(select perfId from Performance_Feedback where feedbackerId = ?)',
             [feedbackerid],
             (error, results, fields) => {
                 if (error) {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Connection from './Connection';
+import { Link } from 'react-router-dom';
 
 class OneEmployee extends Component {
     constructor(props) {
@@ -17,7 +18,6 @@ class OneEmployee extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
-        this.isChecked = this.isChecked.bind(this);
     }
 
     componentDidMount() {
@@ -61,11 +61,6 @@ class OneEmployee extends Component {
         }
     }
 
-    isChecked(empId) {
-        console.log("debug point:" + this.state.isAssign.__proto__);
-        //return this.state.isAssign.has(empId);
-    }
-
     handleSubmit(e) {
         Connection.addEmployeePerf(this.empId, this.state.content).then((res) => {
             this.setState({
@@ -76,6 +71,7 @@ class OneEmployee extends Component {
     }
 
     render() {
+        console.log(this.props.history);
         console.log(this.state.isAssign);
         return (
             <div>
@@ -92,7 +88,7 @@ class OneEmployee extends Component {
                             return (
                             <label key={emp.id}>
                                 <input id={emp.id} name="isAssign" type="checkbox"
-                                    checked={this.isChecked(emp.id)}
+                                    checked={this.state.isAssign.has(emp.id)}
                                     onChange={this.handleCheckboxChange} /> 
                                 {emp.name}<br/>
                             </label>);
@@ -101,6 +97,7 @@ class OneEmployee extends Component {
                         })}
                 </label><br/>
                 <button type="button" onClick={this.handleSubmit}>Save</button>
+                <button type="button" onClick={this.props.history.goBack}>Back</button>
             </fieldset>
             </div>
         );

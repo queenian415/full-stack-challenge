@@ -87,14 +87,14 @@ module.exports = {
             });
     },
 
-    addFeedbacker: function(conn, feedbackerid, perfid, callback) {
+    addFeedbacker: function(conn, feedbackerid, perfid, employeeId, callback) {
         conn.query(
-            'INSERT INTO perf_feedback_ref (feedbackerId, perfId) VALUES (?, ?)',
-            [feedbackerid, perfid],
+            'INSERT INTO Performance_Feedback (feedbackerId, perfId, employeeId) VALUES (?, ?, ?)',
+            [feedbackerid, perfid, employeeId],
             (error, results, fields) => {
                 if (error) {
                     if (error.code == "ER_DUP_ENTRY") {
-                        // If duplicate entry, ignore error
+                        // If duplicate entry, skip insertion, ignore error
                         error = null;
                     } else console.error(error);
                 }
@@ -105,7 +105,7 @@ module.exports = {
 
     removeFeedbacker: function(conn, feedbackerid, perfid, callback) {
         conn.query(
-            'DELETE FROM perf_feedback_ref WHERE feedbackerId = ? AND perfId = ?',
+            'DELETE FROM Performance_Feedback WHERE feedbackerId = ? AND perfId = ?',
             [feedbackerid, perfid],
             (error, results, fields) => {
                 if (error) {
@@ -118,8 +118,21 @@ module.exports = {
 
     getFeedbakcers: function(conn, perfid, callback) {
         conn.query(
-            'SELECT feedbackerId FROM perf_feedback_ref WHERE perfId = ?',
+            'SELECT feedbackerId FROM Performance_Feedback WHERE perfId = ?',
             [perfid],
+            (error, results, fields) => {
+                if (error) {
+                    console.error(error);
+                }
+                callback(error, results);
+            });
+    },
+
+    getPerfsForFeedback: function(conn, feedbackerid, callback) {
+        conn.query(
+            'select * from Performance WHERE id IN (' +
+                'select perfId from Performance_Feedback where feedbackerId = ?)',
+            [feedbackerid],
             (error, results, fields) => {
                 if (error) {
                     console.error(error);

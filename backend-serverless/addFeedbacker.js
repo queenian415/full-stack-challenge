@@ -22,12 +22,13 @@ function addNewFeedbacker(conn, requestBody, callback) {
            "Content-Type": "application/json"
         }
     };
-    dbconnect.addFeedbacker(conn, requestBody.feedbackerId, requestBody.perfId,
-        (err, results) => {
-            if (err) throw err;
-            console.log(results);
-            response.body = JSON.stringify(results);
-            callback(null, response);
-        });
+    dbconnect.addFeedbacker(conn, requestBody.feedbackerId, 
+      requestBody.perfId, requestBody.employeeId,
+      (err, results) => {
+          if (err) throw err;
+          console.log(results);
+          response.body = JSON.stringify(results);
+          callback(null, response);
+      });
 }
 

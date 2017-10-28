@@ -21,17 +21,42 @@ class Connection {
                 return response.json() })
     }
 
-    static addEmployeePerf(employeeId, content) {
+    static addEmployeePerf(perfid, employeeId, content) {
         console.log('Connection: add employee performance');
         return fetch(baseUrl + 'add_employees_perf', {
                 method: 'POST',
                 body: JSON.stringify({
+                    id: perfid,
                     employeeId: employeeId,
                     content: content
                 })
             })
             .then((response) => { 
                 return response.json() })
+    }
+
+    static addFeedbacker(id, feedbackerId) {
+        console.log('Connection: add feedbacker to perf ' + id);
+        return fetch(baseUrl + 'add_feedbacker', {
+            method: 'POST',
+            body: JSON.stringify({
+                perfId: id,
+                feedbackerId: feedbackerId
+            })
+        })
+        .then()
+    }
+
+    static getFeedbackers(id) {
+        console.log('Connection: get feedbackers to perf ' + id);
+        return fetch(baseUrl + 'get_feedbackers', {
+            method: 'POST',
+            body: JSON.stringify({
+                perfId: id,
+            })
+        })
+        .then((response) => { 
+            return response.json() })
     }
 }
 

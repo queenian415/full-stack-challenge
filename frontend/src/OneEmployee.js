@@ -11,22 +11,22 @@ class OneEmployee extends Component {
         this.state = {
             id: null,
             content: '',
-            isNew: true,
             isAssign: new Set()       
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleCheckboxChange = this.handleCheckboxChange.bind(this);
+        this.addFeedbacker = this.addFeedbacker.bind(this);
     }
 
     componentDidMount() {
         Connection.getEmployeePerf(this.empId).then((perf) => {
             if (perf.length > 0) {
+                console.log('load performance');
                 this.setState({
                     id: perf[0].id,
                     content: perf[0].content,
-                    isNew: false
                 })
             }
         });
@@ -62,21 +62,31 @@ class OneEmployee extends Component {
     }
 
     handleSubmit(e) {
-        Connection.addEmployeePerf(this.empId, this.state.content).then((res) => {
-            this.setState({
-                id: res.insertId,
-                isNew: false
-            });
+        Connection.addEmployeePerf(this.state.id, this.empId, this.state.content).then((res) => {
+            if (this.state.id == null) {
+                this.setState({
+                    id: res.insertId,
+                }, this.addFeedbacker(this.state.id, this.state.isAssign));
+            } else {
+                this.addFeedbacker(this.state.id, this.state.isAssign);
+            }
         });
     }
 
+    addFeedbacker(id, isAssign) {
+        if (this.state.isAssign.size > 0) {
+            this.state.isAssign.forEach((a) => {
+                Connection.addFeedbacker(this.state.id, a);
+            })
+        }
+    }
+
     render() {
-        console.log(this.props.history);
         console.log(this.state.isAssign);
         return (
             <div>
             <h1>Employee: {this.name}</h1>
-            <fieldset>
+            <fieldset id={this.props.id}>
                 <label>
                     <h2>Performance Review:</h2><br/>
                     <textarea rows="10" cols="50" name="content" value={this.state.content} onChange={this.handleInputChange}/>

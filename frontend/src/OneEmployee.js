@@ -21,19 +21,17 @@ class OneEmployee extends Component {
     componentDidMount() {
         Connection.getEmployeePerf(this.empId).then((perf) => {
             if (perf.length > 0) {
-                console.log('load performance');
+                console.log(perf);
                 this.setState({
                     id: perf[0].id,
-                    content: perf[0].content,
+                    content: perf[0].content
                 })
-                Connection.getFeedbackers(perf[0].id).then((res) => {
-                    const newFeedbackers = new Set();                    
-                    res.map((a) => {
-                        newFeedbackers.add(a.feedbackerId);
-                        this.setState({
-                            isAssign: newFeedbackers,
-                        })
-                    })
+                const newFeedbackers = new Set();                    
+                perf.map((a) => {
+                    newFeedbackers.add(a.feedbackerId);
+                });
+                this.setState({
+                    isAssign: newFeedbackers,
                 })
             } else {
                 Connection.addEmployeePerf(this.state.id, this.empId, this.state.content).then((res) => {
@@ -54,7 +52,6 @@ class OneEmployee extends Component {
     }
 
     handleCheckboxChange(e) {
-        console.log("handle check box");
         const feedbackerId = parseInt(e.target.id);
         let newAssign = null;
         if (e.target.checked == true) {

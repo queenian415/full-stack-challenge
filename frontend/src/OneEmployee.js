@@ -60,7 +60,7 @@ class OneEmployee extends Component {
         if (e.target.checked == true) {
             if (!this.state.isAssign.has(feedbackerId)) {
                 Connection.addFeedbacker(this.state.id, feedbackerId, this.empId);
-                newAssign = this.state.isAssign;
+                newAssign = new Set(this.state.isAssign);
                 newAssign.add(feedbackerId);
                 this.setState({
                     isAssign: newAssign
@@ -69,7 +69,7 @@ class OneEmployee extends Component {
         } else { // checked == false
             if (this.state.isAssign.has(feedbackerId)) {
                 Connection.removeFeedbacker(this.state.id, feedbackerId);
-                newAssign = this.state.isAssign;
+                newAssign = new Set(this.state.isAssign);
                 newAssign.delete(feedbackerId);
                 this.setState({
                     isAssign: newAssign

@@ -83,6 +83,16 @@ class Connection {
         .then((response) => { 
             return response.json() })
     }
+
+    static addFeedback(obj) {
+        console.log('Connection: add feedback for performance ' + obj.perfId);
+        return fetch(baseUrl + 'add_feedback', {
+            method: 'POST',
+            body: JSON.stringify(obj)
+        })
+        .then((response) => { 
+            return response.json() })
+    }
 }
 
 export default Connection;

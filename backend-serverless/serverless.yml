@@ -146,6 +146,13 @@ functions:
           path: full-stack/add_feedback
           method: post
           cors: true
+  addEmployee:
+    handler: addEmployee.addEmployee
+    events:
+      - http:
+          path: full-stack/add_employee
+          method: post
+          cors: true
 # you can add CloudFormation resource templates here
 #resources:
 #  Resources:

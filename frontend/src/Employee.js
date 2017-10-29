@@ -27,7 +27,6 @@ class Employee extends Component {
     render() {
         return (
             <div className='left'>
-                <h1>Employee: (please select who you are from below)</h1>
                 <Switch>
                     <Route exact path='/employee' render={(props) => (
                         <EmployeeLink {...props} employees={this.state.employees} />
@@ -45,10 +44,11 @@ class EmployeeLink extends Component {
     render() {
         return (
             <div>
+                <h1>Employee: (please select who you are from below)</h1>
                 <h2>I am... :</h2>
                 <nav>{this.props.employees.map((a) => 
                         (<li key={a.id}><Link to={'/employee/' + a.id + '/' + a.name}>
-                            {a.id}, {a.adminId}, {a.name}</Link>
+                            Id: {a.id},  {a.name}</Link>
                         </li>))}
                 </nav><br/>
                 <Link to={'/'}>Back</Link>

@@ -51,6 +51,18 @@ module.exports = {
             });
     },
 
+    addEmployee: function(conn, obj, callback) {
+        conn.query(
+            'INSERT INTO Employee(adminId, name) VALUES (?, ?)',
+            [obj.adminId, obj.name],
+            (error, results, fields) => {
+                if (error) {
+                    console.error(error);
+                }
+                callback(error, results);
+            });
+    },
+
     getPerformanceReview: function(conn, employeeId, callback) {
         conn.query(
             'SELECT id, content FROM Performance WHERE employeeId = ?',

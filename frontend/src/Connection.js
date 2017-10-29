@@ -93,6 +93,16 @@ class Connection {
         .then((response) => { 
             return response.json() })
     }
+
+    static addEmployee(obj) {
+        console.log('Connection: add employee');
+        return fetch(baseUrl + 'add_employee', {
+            method: 'POST',
+            body: JSON.stringify(obj)
+        })
+        .then((response) => { 
+            return response.json() })
+    }
 }
 
 export default Connection;

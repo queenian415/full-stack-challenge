@@ -68,7 +68,7 @@ class EmployeeFeedback extends Component {
                 <h4> Your Feedback:</h4>
                 <textarea id={perf.perfId} rows="5" cols="50" name="content" 
                     value={perf.feedbackContent} 
-                    onChange={this.handleInputChange}/>
+                    onChange={this.handleInputChange}/><br/>
                 <button id={perf.perfId} type="button" onClick={this.handleSubmit}>Submit</button><br/>
             </fieldset>
         )));

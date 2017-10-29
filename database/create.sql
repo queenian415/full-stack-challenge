@@ -24,12 +24,26 @@ CREATE TABLE IF NOT EXISTS Performance (
     FOREIGN KEY (employeeId) REFERENCES Employee(id)
 ); 
 
+CREATE TABLE IF NOT EXISTS Feedback (
+    id INT NOT NULL AUTO_INCREMENT,
+    feedbackerId INT NOT NULL,
+    perfId INT NOT NULL,
+    content VARCHAR(150),
+    create_ts TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    modified_ts TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    PRIMARY KEY (id),
+    FOREIGN KEY (feedbackerId) REFERENCES Employee(id),
+    FOREIGN KEY (perfId) REFERENCES Performance(id)
+); 
+
 CREATE TABLE IF NOT EXISTS Performance_Feedback (
    feedbackerId INT NOT NULL,
    perfId INT NOT NULL,
    employeeId INT NOT NULL,
+   feedbackId INT,
    PRIMARY KEY (feedbackerId, perfId),
    FOREIGN KEY (feedbackerId) REFERENCES Employee(id),
    FOREIGN KEY (perfId) REFERENCES Performance(id),
-   FOREIGN KEY (employeeId) REFERENCES Employee(id)
+   FOREIGN KEY (employeeId) REFERENCES Employee(id),
+   FOREIGN KEY (feedbackId) REFERENCES Feedback(id)
 );

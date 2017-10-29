@@ -66,7 +66,7 @@ module.exports = {
     getPerformanceAndFeedbackers: function(conn, employeeId, callback) {
         conn.query(
             'select p.id, p.content, f.feedbackerId from Performance p ' + 
-            'inner join Performance_Feedback f on f.perfId = p.id ' + 
+            'left join Performance_Feedback f on f.perfId = p.id ' + 
             'where p.employeeId = ?',
             [employeeId],
             (error, results, fields) => {

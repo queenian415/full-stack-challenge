@@ -130,11 +130,24 @@ module.exports = {
 
     getPerfsForFeedback: function(conn, feedbackerid, callback) {
         conn.query(
-            'select p.id, p.content, p.employeeId, e.name from ' + 
-            'Performance p inner join Employee e on p.employeeId = e.id ' + 
-            'where p.id in ' + 
-                '(select perfId from Performance_Feedback where feedbackerId = ?)',
+            'select p.id as perfId, p.content as perfContent, p.employeeId, e.name, f.id as feedbackId, f.content as feedbackContent ' + 
+            'from Performance_Feedback pf inner join Performance p on pf.perfId = p.id ' + 
+            'inner join Employee e on p.employeeId = e.id ' + 
+            'left join Feedback f on f.perfId = p.id  and f.feedbackerId = pf.feedbackerId ' + 
+            'where pf.feedbackerId = ?',
             [feedbackerid],
+            (error, results, fields) => {
+                if (error) {
+                    console.error(error);
+                }
+                callback(error, results);
+            });
+    },
+
+    addFeedback: function(conn, obj, callback) {
+        conn.query(
+            'insert into Feedback(id, feedbackerId, perfId, content) values (?, ?, ?, ?) on duplicate key update content = ?',
+            [obj.feedbackId, obj.feedbackerId, obj.perfId, obj.feedbackContent, obj.feedbackContent],
             (error, results, fields) => {
                 if (error) {
                     console.error(error);

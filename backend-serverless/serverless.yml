@@ -139,6 +139,13 @@ functions:
           path: full-stack/get_perfs_for_feedback
           method: post
           cors: true
+  addFeedback:
+    handler: addFeedback.addFeedback
+    events:
+      - http:
+          path: full-stack/add_feedback
+          method: post
+          cors: true
 # you can add CloudFormation resource templates here
 #resources:
 #  Resources:

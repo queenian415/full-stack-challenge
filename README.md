@@ -64,7 +64,9 @@ Employee:
 
 ### Database
 * Mysql in AWS RDS
-* Tables:
+
+```
+Tables:
 +----------------------+
 | Tables_in_full_stack |
 +----------------------+
@@ -74,25 +76,25 @@ Employee:
 | Performance          |
 | Performance_Feedback |
 +----------------------+
-* Schemas for tables:
-  * Admin:
+Schemas for tables:
+Admin:
   +----+------+
   | id | name |
   +----+------+
-  * Employee:
+Employee:
   +----+---------+---------------+
   | id | adminId | name          |
   +----+---------+---------------+
-  * Feedback:
+Feedback:
   +----+--------------+--------+-----------------+---------------+----------------+
   | id | feedbackerId | perfId | content         | create_ts     | modified_ts    |
   +----+--------------+--------+-----------------+---------------+----------------+
-  * Performance:
+Performance:
   +----+------------+-------------------+-------------------+-------------------+
   | id | employeeId | content           | create_ts         | modified_ts       |
   +----+------------+-------------------+-------------------+-------------------+
-  * Performance_Feedback:
+Performance_Feedback:
   +--------------+--------+------------+------------+
   | feedbackerId | perfId | employeeId | feedbackId |
   +--------------+--------+------------+------------+
-  
+```

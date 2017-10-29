@@ -98,7 +98,7 @@ functions:
           method: post
           cors: true
   employeePer:
-    handler: oneEmployeePerf.getEmployeePerf
+    handler: oneEmployeePerf.getPerformanceAndFeedbackers
     events:
       - http:
           path: full-stack/one_employees_perf

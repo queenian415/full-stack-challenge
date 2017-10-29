@@ -63,9 +63,11 @@ module.exports = {
             });
     },
 
-    getPerformanceReview: function(conn, employeeId, callback) {
+    getPerformanceAndFeedbackers: function(conn, employeeId, callback) {
         conn.query(
-            'SELECT id, content FROM Performance WHERE employeeId = ?',
+            'select p.id, p.content, f.feedbackerId from Performance p ' + 
+            'inner join Performance_Feedback f on f.perfId = p.id ' + 
+            'where p.employeeId = ?',
             [employeeId],
             (error, results, fields) => {
                 if (error) {

@@ -2,7 +2,7 @@
 
 const dbconnect = require('./dbConnect');
 
-module.exports.getEmployeePerf = (event, context, callback) => {
+module.exports.getPerformanceAndFeedbackers = (event, context, callback) => {
   const requestBody = JSON.parse(event.body);
   console.log(requestBody);
   
@@ -18,7 +18,7 @@ module.exports.getEmployeePerf = (event, context, callback) => {
 }
 
 function getPerf(conn, employeeId, callback) {
-  dbconnect.getPerformanceReview(conn, employeeId,
+  dbconnect.getPerformanceAndFeedbackers(conn, employeeId,
     (err, results) => {
       if (err) throw err;
       const response = {

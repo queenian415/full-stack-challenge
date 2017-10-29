@@ -202,7 +202,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/full-stack/dev/1509247265987-2017-10-29T03:21:05.987Z/full-stack.zip"
+                "S3Key": "serverless/full-stack/dev/1509290191492-2017-10-29T15:16:31.492Z/full-stack.zip"
               },
               "FunctionName": "full-stack-dev-allEmployees",
               "Handler": "allEmployees.getAllEmployees",
@@ -221,14 +221,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "AllEmployeesLambdaVersionCNhtJZA6WtrdGtBKUnYoebw7Xo9NJ98fBzaPKBNwo": {
+          "AllEmployeesLambdaVersionNeyDOfJ5WNyJPjjOOURWWSO2f3cedmeaycrvGPfBA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AllEmployeesLambdaFunction"
               },
-              "CodeSha256": "C+NhtJZA6WtrdGtB+KUnYoebw7Xo9NJ98fBzaPKBNwo="
+              "CodeSha256": "NeyDOfJ5WNyJ+PjjOOURWWS+O2f3cedmeaycrvGPfBA="
             }
           },
           "EmployeePerLambdaFunction": {
@@ -238,10 +238,10 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/full-stack/dev/1509247265987-2017-10-29T03:21:05.987Z/full-stack.zip"
+                "S3Key": "serverless/full-stack/dev/1509290191492-2017-10-29T15:16:31.492Z/full-stack.zip"
               },
               "FunctionName": "full-stack-dev-employeePer",
-              "Handler": "oneEmployeePerf.getEmployeePerf",
+              "Handler": "oneEmployeePerf.getPerformanceAndFeedbackers",
               "MemorySize": 1024,
               "Role": {
                 "Fn::GetAtt": [
@@ -257,14 +257,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "EmployeePerLambdaVersionCNhtJZA6WtrdGtBKUnYoebw7Xo9NJ98fBzaPKBNwo": {
+          "EmployeePerLambdaVersionNeyDOfJ5WNyJPjjOOURWWSO2f3cedmeaycrvGPfBA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "EmployeePerLambdaFunction"
               },
-              "CodeSha256": "C+NhtJZA6WtrdGtB+KUnYoebw7Xo9NJ98fBzaPKBNwo="
+              "CodeSha256": "NeyDOfJ5WNyJ+PjjOOURWWS+O2f3cedmeaycrvGPfBA="
             }
           },
           "AddEmpPerfLambdaFunction": {
@@ -274,7 +274,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/full-stack/dev/1509247265987-2017-10-29T03:21:05.987Z/full-stack.zip"
+                "S3Key": "serverless/full-stack/dev/1509290191492-2017-10-29T15:16:31.492Z/full-stack.zip"
               },
               "FunctionName": "full-stack-dev-addEmpPerf",
               "Handler": "addEmployeePerf.addEmployeePerf",
@@ -293,14 +293,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "AddEmpPerfLambdaVersionCNhtJZA6WtrdGtBKUnYoebw7Xo9NJ98fBzaPKBNwo": {
+          "AddEmpPerfLambdaVersionNeyDOfJ5WNyJPjjOOURWWSO2f3cedmeaycrvGPfBA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AddEmpPerfLambdaFunction"
               },
-              "CodeSha256": "C+NhtJZA6WtrdGtB+KUnYoebw7Xo9NJ98fBzaPKBNwo="
+              "CodeSha256": "NeyDOfJ5WNyJ+PjjOOURWWS+O2f3cedmeaycrvGPfBA="
             }
           },
           "AddFeedbackersLambdaFunction": {
@@ -310,7 +310,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/full-stack/dev/1509247265987-2017-10-29T03:21:05.987Z/full-stack.zip"
+                "S3Key": "serverless/full-stack/dev/1509290191492-2017-10-29T15:16:31.492Z/full-stack.zip"
               },
               "FunctionName": "full-stack-dev-addFeedbackers",
               "Handler": "addFeedbacker.addFeedbacker",
@@ -329,14 +329,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "AddFeedbackersLambdaVersionCNhtJZA6WtrdGtBKUnYoebw7Xo9NJ98fBzaPKBNwo": {
+          "AddFeedbackersLambdaVersionNeyDOfJ5WNyJPjjOOURWWSO2f3cedmeaycrvGPfBA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AddFeedbackersLambdaFunction"
               },
-              "CodeSha256": "C+NhtJZA6WtrdGtB+KUnYoebw7Xo9NJ98fBzaPKBNwo="
+              "CodeSha256": "NeyDOfJ5WNyJ+PjjOOURWWS+O2f3cedmeaycrvGPfBA="
             }
           },
           "GetFeedbackersLambdaFunction": {
@@ -346,7 +346,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/full-stack/dev/1509247265987-2017-10-29T03:21:05.987Z/full-stack.zip"
+                "S3Key": "serverless/full-stack/dev/1509290191492-2017-10-29T15:16:31.492Z/full-stack.zip"
               },
               "FunctionName": "full-stack-dev-getFeedbackers",
               "Handler": "getFeedbackers.getFeedbackers",
@@ -365,14 +365,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "GetFeedbackersLambdaVersionCNhtJZA6WtrdGtBKUnYoebw7Xo9NJ98fBzaPKBNwo": {
+          "GetFeedbackersLambdaVersionNeyDOfJ5WNyJPjjOOURWWSO2f3cedmeaycrvGPfBA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetFeedbackersLambdaFunction"
               },
-              "CodeSha256": "C+NhtJZA6WtrdGtB+KUnYoebw7Xo9NJ98fBzaPKBNwo="
+              "CodeSha256": "NeyDOfJ5WNyJ+PjjOOURWWS+O2f3cedmeaycrvGPfBA="
             }
           },
           "RemoveFeedbackerLambdaFunction": {
@@ -382,7 +382,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/full-stack/dev/1509247265987-2017-10-29T03:21:05.987Z/full-stack.zip"
+                "S3Key": "serverless/full-stack/dev/1509290191492-2017-10-29T15:16:31.492Z/full-stack.zip"
               },
               "FunctionName": "full-stack-dev-removeFeedbacker",
               "Handler": "removeFeedbacker.removeFeedbacker",
@@ -401,14 +401,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "RemoveFeedbackerLambdaVersionCNhtJZA6WtrdGtBKUnYoebw7Xo9NJ98fBzaPKBNwo": {
+          "RemoveFeedbackerLambdaVersionNeyDOfJ5WNyJPjjOOURWWSO2f3cedmeaycrvGPfBA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "RemoveFeedbackerLambdaFunction"
               },
-              "CodeSha256": "C+NhtJZA6WtrdGtB+KUnYoebw7Xo9NJ98fBzaPKBNwo="
+              "CodeSha256": "NeyDOfJ5WNyJ+PjjOOURWWS+O2f3cedmeaycrvGPfBA="
             }
           },
           "GetPerfsForFeedbackLambdaFunction": {
@@ -418,7 +418,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/full-stack/dev/1509247265987-2017-10-29T03:21:05.987Z/full-stack.zip"
+                "S3Key": "serverless/full-stack/dev/1509290191492-2017-10-29T15:16:31.492Z/full-stack.zip"
               },
               "FunctionName": "full-stack-dev-getPerfsForFeedback",
               "Handler": "getPerfsForFeedback.getPerfsForFeedback",
@@ -437,14 +437,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "GetPerfsForFeedbackLambdaVersionCNhtJZA6WtrdGtBKUnYoebw7Xo9NJ98fBzaPKBNwo": {
+          "GetPerfsForFeedbackLambdaVersionNeyDOfJ5WNyJPjjOOURWWSO2f3cedmeaycrvGPfBA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "GetPerfsForFeedbackLambdaFunction"
               },
-              "CodeSha256": "C+NhtJZA6WtrdGtB+KUnYoebw7Xo9NJ98fBzaPKBNwo="
+              "CodeSha256": "NeyDOfJ5WNyJ+PjjOOURWWS+O2f3cedmeaycrvGPfBA="
             }
           },
           "AddFeedbackLambdaFunction": {
@@ -454,7 +454,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/full-stack/dev/1509247265987-2017-10-29T03:21:05.987Z/full-stack.zip"
+                "S3Key": "serverless/full-stack/dev/1509290191492-2017-10-29T15:16:31.492Z/full-stack.zip"
               },
               "FunctionName": "full-stack-dev-addFeedback",
               "Handler": "addFeedback.addFeedback",
@@ -473,14 +473,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "AddFeedbackLambdaVersionCNhtJZA6WtrdGtBKUnYoebw7Xo9NJ98fBzaPKBNwo": {
+          "AddFeedbackLambdaVersionNeyDOfJ5WNyJPjjOOURWWSO2f3cedmeaycrvGPfBA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AddFeedbackLambdaFunction"
               },
-              "CodeSha256": "C+NhtJZA6WtrdGtB+KUnYoebw7Xo9NJ98fBzaPKBNwo="
+              "CodeSha256": "NeyDOfJ5WNyJ+PjjOOURWWS+O2f3cedmeaycrvGPfBA="
             }
           },
           "AddEmployeeLambdaFunction": {
@@ -490,7 +490,7 @@
                 "S3Bucket": {
                   "Ref": "ServerlessDeploymentBucket"
                 },
-                "S3Key": "serverless/full-stack/dev/1509247265987-2017-10-29T03:21:05.987Z/full-stack.zip"
+                "S3Key": "serverless/full-stack/dev/1509290191492-2017-10-29T15:16:31.492Z/full-stack.zip"
               },
               "FunctionName": "full-stack-dev-addEmployee",
               "Handler": "addEmployee.addEmployee",
@@ -509,14 +509,14 @@
               "IamRoleLambdaExecution"
             ]
           },
-          "AddEmployeeLambdaVersionCNhtJZA6WtrdGtBKUnYoebw7Xo9NJ98fBzaPKBNwo": {
+          "AddEmployeeLambdaVersionNeyDOfJ5WNyJPjjOOURWWSO2f3cedmeaycrvGPfBA": {
             "Type": "AWS::Lambda::Version",
             "DeletionPolicy": "Retain",
             "Properties": {
               "FunctionName": {
                 "Ref": "AddEmployeeLambdaFunction"
               },
-              "CodeSha256": "C+NhtJZA6WtrdGtB+KUnYoebw7Xo9NJ98fBzaPKBNwo="
+              "CodeSha256": "NeyDOfJ5WNyJ+PjjOOURWWS+O2f3cedmeaycrvGPfBA="
             }
           },
           "ApiGatewayRestApi": {
@@ -1404,7 +1404,7 @@
               "MethodResponses": []
             }
           },
-          "ApiGatewayDeployment1509247266016": {
+          "ApiGatewayDeployment1509290191528": {
             "Type": "AWS::ApiGateway::Deployment",
             "Properties": {
               "RestApiId": {
@@ -1731,55 +1731,55 @@
           "AllEmployeesLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AllEmployeesLambdaVersionCNhtJZA6WtrdGtBKUnYoebw7Xo9NJ98fBzaPKBNwo"
+              "Ref": "AllEmployeesLambdaVersionNeyDOfJ5WNyJPjjOOURWWSO2f3cedmeaycrvGPfBA"
             }
           },
           "EmployeePerLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "EmployeePerLambdaVersionCNhtJZA6WtrdGtBKUnYoebw7Xo9NJ98fBzaPKBNwo"
+              "Ref": "EmployeePerLambdaVersionNeyDOfJ5WNyJPjjOOURWWSO2f3cedmeaycrvGPfBA"
             }
           },
           "AddEmpPerfLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AddEmpPerfLambdaVersionCNhtJZA6WtrdGtBKUnYoebw7Xo9NJ98fBzaPKBNwo"
+              "Ref": "AddEmpPerfLambdaVersionNeyDOfJ5WNyJPjjOOURWWSO2f3cedmeaycrvGPfBA"
             }
           },
           "AddFeedbackersLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AddFeedbackersLambdaVersionCNhtJZA6WtrdGtBKUnYoebw7Xo9NJ98fBzaPKBNwo"
+              "Ref": "AddFeedbackersLambdaVersionNeyDOfJ5WNyJPjjOOURWWSO2f3cedmeaycrvGPfBA"
             }
           },
           "GetFeedbackersLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetFeedbackersLambdaVersionCNhtJZA6WtrdGtBKUnYoebw7Xo9NJ98fBzaPKBNwo"
+              "Ref": "GetFeedbackersLambdaVersionNeyDOfJ5WNyJPjjOOURWWSO2f3cedmeaycrvGPfBA"
             }
           },
           "RemoveFeedbackerLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "RemoveFeedbackerLambdaVersionCNhtJZA6WtrdGtBKUnYoebw7Xo9NJ98fBzaPKBNwo"
+              "Ref": "RemoveFeedbackerLambdaVersionNeyDOfJ5WNyJPjjOOURWWSO2f3cedmeaycrvGPfBA"
             }
           },
           "GetPerfsForFeedbackLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "GetPerfsForFeedbackLambdaVersionCNhtJZA6WtrdGtBKUnYoebw7Xo9NJ98fBzaPKBNwo"
+              "Ref": "GetPerfsForFeedbackLambdaVersionNeyDOfJ5WNyJPjjOOURWWSO2f3cedmeaycrvGPfBA"
             }
           },
           "AddFeedbackLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AddFeedbackLambdaVersionCNhtJZA6WtrdGtBKUnYoebw7Xo9NJ98fBzaPKBNwo"
+              "Ref": "AddFeedbackLambdaVersionNeyDOfJ5WNyJPjjOOURWWSO2f3cedmeaycrvGPfBA"
             }
           },
           "AddEmployeeLambdaFunctionQualifiedArn": {
             "Description": "Current Lambda function version",
             "Value": {
-              "Ref": "AddEmployeeLambdaVersionCNhtJZA6WtrdGtBKUnYoebw7Xo9NJ98fBzaPKBNwo"
+              "Ref": "AddEmployeeLambdaVersionNeyDOfJ5WNyJPjjOOURWWSO2f3cedmeaycrvGPfBA"
             }
           },
           "ServiceEndpoint": {
@@ -1853,7 +1853,7 @@
         "vpc": {}
       },
       "employeePer": {
-        "handler": "oneEmployeePerf.getEmployeePerf",
+        "handler": "oneEmployeePerf.getPerformanceAndFeedbackers",
         "events": [
           {
             "http": {
@@ -2128,7 +2128,7 @@
     "artifact": "/Users/Tiffanie/Projects/full-stack-challenge/backend-serverless/.serverless/full-stack.zip"
   },
   "package": {
-    "artifactDirectoryName": "serverless/full-stack/dev/1509247265987-2017-10-29T03:21:05.987Z",
+    "artifactDirectoryName": "serverless/full-stack/dev/1509290191492-2017-10-29T15:16:31.492Z",
     "artifact": "full-stack.zip"
   }
 }
